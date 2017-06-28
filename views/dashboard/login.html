@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学IT - 后台管理系统</title>
+    <?php include "/views/public/css.html" ?>
+</head>
+<body>
+    <!-- 登录 -->
+    <div class="login">
+        <div class="login-wrap">
+            <div class="avatar">
+                <img src="/views/static/images/monkey.png" class="img-circle" alt="">
+            </div>
+            <form action="" id="login-form" class="col-xs-offset-1 col-xs-10">
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon">
+                        <i class="fa fa-user"></i>
+                    </span>
+                    <input type="text" id="username" name="tc_name" class="form-control" placeholder="用户名">
+                </div>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon">
+                        <i class="fa fa-key"></i>
+                    </span>
+                    <input type="password" id="password" name="tc_pass" class="form-control" placeholder="密码">
+                </div>
+                <button type="submit" class="btn btn-lg btn-primary btn-block">登 录</button>
+            </form>
+        </div>
+    </div>
+    
+    <?php include "views/public/js.html" ?>
+    <script>
+        // $(function(){
+        //     $('#login-form').submit(function(){
+        //         //获取用户传入的用户名和密码
+        //         var userName = $('#username').val();
+        //         var passWord = $('#password').val();
+        //         //发送ajax请求
+        //         $.ajax({
+        //             url: '/api/login',
+        //             type: 'post',
+        //             data: {
+        //                 tc_name: userName,
+        //                 tc_pass: passWord
+        //             },
+        //             success: function(data){
+        //                 if(data.code==200){
+        //                     //用cookie存储用户头像和用户名
+        //                     $.cookie("userInfo", JSON.stringify(data.result), {path: "/"});
+        //                     console.log(JSON.stringify(data.result));
+        //                     console.log($.cookie("userInfo"));
+
+        //                     //跳转页面
+        //                     location.href='/';
+        //                 }
+        //             },
+        //             error: function(){
+        //                 console.log("出错了");
+        //             }
+        //         })
+
+
+        //         //阻止表单的默认提交
+        //         return false;
+        //     })
+        // })
+
+
+        $("#login-form").submit(function(){
+            $(this).ajaxSubmit({
+                url: "/api/login",
+                type: "post",
+                success: function(data){
+                    console.log(data);
+                    $.cookie("userInfo", JSON.stringify(data.result), {path: "/"});
+                    location.href="/";
+                }
+            })
+            return false;
+        })
+
+    </script>
+
+</body>
+</html>
