@@ -29,58 +29,9 @@
             </form>
         </div>
     </div>
-    
-    <?php include "views/public/js.html" ?>
+    <?php include "/views/public/js.html" ?>
     <script>
-        // $(function(){
-        //     $('#login-form').submit(function(){
-        //         //获取用户传入的用户名和密码
-        //         var userName = $('#username').val();
-        //         var passWord = $('#password').val();
-        //         //发送ajax请求
-        //         $.ajax({
-        //             url: '/api/login',
-        //             type: 'post',
-        //             data: {
-        //                 tc_name: userName,
-        //                 tc_pass: passWord
-        //             },
-        //             success: function(data){
-        //                 if(data.code==200){
-        //                     //用cookie存储用户头像和用户名
-        //                     $.cookie("userInfo", JSON.stringify(data.result), {path: "/"});
-        //                     console.log(JSON.stringify(data.result));
-        //                     console.log($.cookie("userInfo"));
-
-        //                     //跳转页面
-        //                     location.href='/';
-        //                 }
-        //             },
-        //             error: function(){
-        //                 console.log("出错了");
-        //             }
-        //         })
-
-
-        //         //阻止表单的默认提交
-        //         return false;
-        //     })
-        // })
-
-
-        $("#login-form").submit(function(){
-            $(this).ajaxSubmit({
-                url: "/api/login",
-                type: "post",
-                success: function(data){
-                    console.log(data);
-                    $.cookie("userInfo", JSON.stringify(data.result), {path: "/"});
-                    location.href="/";
-                }
-            })
-            return false;
-        })
-
+        require(["static/js/dashboard/login"])
     </script>
 
 </body>
